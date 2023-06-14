@@ -38,5 +38,32 @@ export default {
     messageBus.subscribe(channel, function (houseAdsSettings) {
       Site.currentProp("house_creatives", houseAdsSettings);
     });
+
+    	/* yg  */
+    //hide or show side ad section	
+    document.addEventListener("DOMContentLoaded", function () {	
+   	
+      const observer = new MutationObserver((mutations) => {	
+        mutations.forEach((mutation) => {	
+          // Check if the URL contains a specific substring	
+          let el = document.querySelector(".side-ad-parent");	
+          if( el != undefined ){	
+            if (window.location.href.includes("/t/") ) {	
+              el.style.display = 'none';	
+            } else {	
+              el.style.display = 'block';	
+            }	
+          }	
+        });	
+      });	
+        
+      const targetNode = document.querySelector("#main-outlet-wrapper");	
+      if(targetNode){	
+        observer.observe(targetNode, { attributes: true, childList: true, subtree: true });	
+      }	
+        
+    });
+
+  },
   },
 };
