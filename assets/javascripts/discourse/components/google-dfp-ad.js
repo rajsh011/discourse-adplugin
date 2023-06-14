@@ -297,19 +297,37 @@ export default AdComponent.extend({
       return globalId;
     }
   },
-
+  
   @discourseComputed("placement", "postNumber")
   divId(placement, postNumber) {
-    let slotNum = getNextSlotNum();
-     /* Comment yg cdfsn */
- /*    if (postNumber) {
+
+  /* Comment yg cdfsn */
+ /*  if (postNumber) {
       return `div-gpt-ad-${slotNum}-${placement}-${postNumber}`;
     } else {
       return `div-gpt-ad-${slotNum}-${placement}`;
+    } 
+ */
+    //#yg- id for side ads
+    /* if(postNumber == 0){
+      return `skyscraper_1`;
     } */
+    
+    let slotNum = getNextSlotNum();   
+    
+    let id_for_ad_after_nth_post = this.siteSettings.dfd_topic_after_nth_post_id;
+    
+    let finval = id_for_ad_after_nth_post + slotNum; 
+    
+    if( placement == "topic-above-post-stream" || placement == "topic-list-top" ){
+        return this.siteSettings.dfd_topic_above_post_stream_id;
+    }
 
-    return `didna_slot_${slotNum}`;
+     // return `didna_slot_${slotNum}`;
+     //return `inline_${slotNum}`;
+     return finval;   
   },
+
 
   @discourseComputed("placement", "showAd")
   adUnitClass(placement, showAd) {
