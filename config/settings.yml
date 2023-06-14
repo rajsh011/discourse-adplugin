@@ -316,7 +316,7 @@ dfp_plugin:
     default: ""
     type: value_list
     client: true
-     dfp_side_ad_code:
+  dfp_side_ad_code:
     client: true
     default: ""
     max: 100
