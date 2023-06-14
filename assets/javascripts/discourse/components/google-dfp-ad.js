@@ -6,8 +6,8 @@ import RSVP from "rsvp";
 import { isTesting } from "discourse-common/config/environment";
 import { htmlSafe } from "@ember/template";
 
-let _loaded = false,
-  _promise = null,
+let _didnaLoaded  = false,
+_didnaPromise  = null,
   ads = {},
   nextSlotNum = 1,
   renderCounts = {};
@@ -43,14 +43,15 @@ function keyParse(word) {
 }
 
 // This should call adslot.setTargeting(key for that location, value for that location)
-function custom_targeting(key_array, value_array, adSlot) {
+/* Comment yg cdfsn */
+/* function custom_targeting(key_array, value_array, adSlot) {
   for (let i = 0; i < key_array.length; i++) {
     if (key_array[i]) {
       adSlot.setTargeting(key_array[i], valueParse(value_array[i]));
     }
   }
 }
-
+ */
 const DESKTOP_SETTINGS = {
   "topic-list-top": {
     code: "dfp_topic_list_top_code",
@@ -140,8 +141,8 @@ function getWidthAndHeight(placement, settings, isMobile) {
     return sizeObj;
   }
 }
-
-function defineSlot(
+/* Comment yg cdfsn */
+/* function defineSlot(
   divId,
   placement,
   settings,
@@ -150,10 +151,11 @@ function defineSlot(
   height,
   categoryTarget
 ) {
+  
   if (!settings.dfp_publisher_id) {
     return;
   }
-
+ 
   if (ads[divId]) {
     return ads[divId];
   }
@@ -188,14 +190,31 @@ function defineSlot(
 
   ads[divId] = { ad, width, height };
   return ads[divId];
+} */
+
+function defineSlot(
+  placement,
+  settings,
+  isMobile
+) {
+
+  let ad, config;
+
+  if (isMobile) {
+    config = MOBILE_SETTINGS[placement];
+  } else {
+    config = DESKTOP_SETTINGS[placement];
+  }
+  return "/" + settings[config.code];
 }
 
-function destroySlot(divId) {
+
+/* function destroySlot(divId) {
   if (ads[divId] && window.googletag) {
     window.googletag.destroySlots([ads[divId].ad]);
     delete ads[divId];
   }
-}
+} */
 
 function loadDiDNA() {
   /**
@@ -203,20 +222,21 @@ function loadDiDNA() {
    * https://support.google.com/admanager/answer/4578089?hl=en
    */
 
-  if (_loaded) {
+  if (_didnaLoaded) {
     return RSVP.resolve();
   }
 
-  if (_promise) {
-    return _promise;
+  if (_didnaPromise) {
+    return _didnaPromise;
   }
 
   // The boilerplate code
   let dfpSrc =
     ("https:" === document.location.protocol ? "https:" : "http:") +
     "//storage.googleapis.com/didna_hb/spg/sportspublishersgroupmixedmartialarts/didna_config.js";
-  _promise = loadScript(dfpSrc, { scriptTag: true }).then(function () {
-    _loaded = true;
+   _didnaPromise  = loadScript(dfpSrc, { scriptTag: true }).then(function () {
+    _didnaLoaded = true;
+
      /* Comment yg cdfsn */
  /*    if (window.googletag === undefined) {
       // eslint-disable-next-line no-console
@@ -232,11 +252,12 @@ function loadDiDNA() {
 
       window.googletag.enableServices();
     }); */
+    
   });
     /* Comment yg cdfsn */
  /*  window.googletag = window.googletag || { cmd: [] }; */
 
-  return _promise;
+  return _didnaPromise;
 }
 
 export default AdComponent.extend({
@@ -417,8 +438,8 @@ export default AdComponent.extend({
   
       didna.cmd.push(function () {
         didna.createAdUnits({
-            id: this.get( "divId" ),
-            adUnitPath: "/170737076/display/SportsPublishersGroup/mixedmartialarts.com",
+            id: id,
+            adUnitPath: adUnitPath,
             size: [728, 90],
             sizeMap: [
                 [
@@ -436,7 +457,7 @@ export default AdComponent.extend({
         });
         didna_counter++;
     });
-    
+
       loadDiDNA().then(() => {
 
     });
@@ -450,8 +471,8 @@ export default AdComponent.extend({
     }
   },
 
-  @on("willDestroyElement")
+ /*  @on("willDestroyElement")
   cleanup() {
     destroySlot(this.get("divId"));
-  },
+  }, */
 });
