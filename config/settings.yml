@@ -39,7 +39,11 @@ ad_plugin:
     client: false
     default: ""
     textarea: true
-
+  content_security_policy_worker_src:
+    default: ""
+    type: list
+    list_type: simple
+    client: true
 adsense_plugin:
   adsense_publisher_code:
     client: true
@@ -52,7 +56,7 @@ adsense_plugin:
   adsense_topic_list_top_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_topic_list_top_ad_sizes:
     client: true
@@ -80,7 +84,7 @@ adsense_plugin:
   adsense_mobile_topic_list_top_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_mobile_topic_list_top_ad_size:
     client: true
@@ -90,7 +94,7 @@ adsense_plugin:
   adsense_topic_above_post_stream_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_topic_above_post_stream_ad_sizes:
     client: true
@@ -100,7 +104,7 @@ adsense_plugin:
   adsense_mobile_topic_above_post_stream_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_mobile_topic_above_post_stream_ad_size:
     client: true
@@ -110,7 +114,7 @@ adsense_plugin:
   adsense_topic_above_suggested_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_topic_above_suggested_ad_sizes:
     client: true
@@ -120,7 +124,7 @@ adsense_plugin:
   adsense_mobile_topic_above_suggested_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_mobile_topic_above_suggested_ad_size:
     client: true
@@ -130,7 +134,7 @@ adsense_plugin:
   adsense_post_bottom_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_post_bottom_ad_sizes:
     client: true
@@ -140,7 +144,7 @@ adsense_plugin:
   adsense_mobile_post_bottom_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_mobile_post_bottom_ad_size:
     client: true
@@ -166,7 +170,7 @@ dfp_plugin:
   dfp_topic_list_top_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_topic_list_top_ad_sizes:
     client: true
     default: "728*90 - leaderboard"
@@ -209,7 +213,7 @@ dfp_plugin:
   dfp_mobile_topic_list_top_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_mobile_topic_list_top_ad_sizes:
     client: true
     default: "320*50 - mobile leaderboard"
@@ -226,7 +230,7 @@ dfp_plugin:
   dfp_topic_above_post_stream_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_topic_above_post_stream_ad_sizes:
     client: true
     default: "728*90 - leaderboard"
@@ -235,7 +239,7 @@ dfp_plugin:
   dfp_mobile_topic_above_post_stream_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_mobile_topic_above_post_stream_ad_sizes:
     client: true
     default: "320*50 - mobile leaderboard"
@@ -252,7 +256,7 @@ dfp_plugin:
   dfp_topic_above_suggested_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_topic_above_suggested_ad_sizes:
     client: true
     default: "728*90 - leaderboard"
@@ -261,7 +265,7 @@ dfp_plugin:
   dfp_mobile_topic_above_suggested_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_mobile_topic_above_suggested_ad_sizes:
     client: true
     default: "320*50 - mobile leaderboard"
@@ -275,7 +279,7 @@ dfp_plugin:
     default: ""
     type: value_list
     client: true
-    max: 50
+    max: 100
   dfp_nth_post_code:
     client: true
     default: ""
@@ -283,7 +287,7 @@ dfp_plugin:
   dfp_post_bottom_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_post_bottom_ad_sizes:
     client: true
     default: "728*90 - leaderboard"
@@ -292,7 +296,7 @@ dfp_plugin:
   dfp_mobile_post_bottom_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_mobile_post_bottom_ad_sizes:
     client: true
     default: "320*50 - mobile leaderboard"
@@ -306,143 +310,3 @@ dfp_plugin:
     default: ""
     type: value_list
     client: true
-
-amazon_plugin:
-  amazon_through_trust_level:
-    client: true
-    default: 2
-    enum: "TrustLevelSetting"
-  amazon_topic_list_top_src_code:
-    client: true
-    default: ""
-  amazon_topic_list_top_ad_width_code:
-    client: true
-    default: ""
-  amazon_topic_list_top_ad_height_code:
-    client: true
-    default: ""
-  amazon_mobile_topic_list_top_src_code:
-    client: true
-    default: ""
-  amazon_mobile_topic_list_top_ad_width_code:
-    client: true
-    default: ""
-  amazon_mobile_topic_list_top_ad_height_code:
-    client: true
-    default: ""
-  amazon_topic_above_post_stream_src_code:
-    client: true
-    default: ""
-  amazon_topic_above_post_stream_ad_width_code:
-    client: true
-    default: ""
-  amazon_topic_above_post_stream_ad_height_code:
-    client: true
-    default: ""
-  amazon_mobile_topic_above_post_stream_src_code:
-    client: true
-    default: ""
-  amazon_mobile_topic_above_post_stream_ad_width_code:
-    client: true
-    default: ""
-  amazon_mobile_topic_above_post_stream_ad_height_code:
-    client: true
-    default: ""
-  amazon_topic_above_suggested_src_code:
-    client: true
-    default: ""
-  amazon_topic_above_suggested_ad_width_code:
-    client: true
-    default: ""
-  amazon_topic_above_suggested_ad_height_code:
-    client: true
-    default: ""
-  amazon_mobile_topic_above_suggested_src_code:
-    client: true
-    default: ""
-  amazon_mobile_topic_above_suggested_ad_width_code:
-    client: true
-    default: ""
-  amazon_mobile_topic_above_suggested_ad_height_code:
-    client: true
-    default: ""
-  amazon_post_bottom_src_code:
-    client: true
-    default: ""
-  amazon_nth_post_code:
-    client: true
-    default: ""
-    min: 1
-  amazon_post_bottom_ad_width_code:
-    client: true
-    default: ""
-  amazon_post_bottom_ad_height_code:
-    client: true
-    default: ""
-  amazon_mobile_post_bottom_src_code:
-    client: true
-    default: ""
-  amazon_mobile_post_bottom_ad_width_code:
-    client: true
-    default: ""
-  amazon_mobile_post_bottom_ad_height_code:
-    client: true
-    default: ""
-
-carbonads_plugin:
-  carbonads_serve_id:
-    client: true
-    default: ""
-  carbonads_placement:
-    client: true
-    default: ""
-  carbonads_through_trust_level:
-    client: true
-    default: 2
-    enum: "TrustLevelSetting"
-  carbonads_topic_list_top_enabled:
-    client: true
-    default: false
-  carbonads_above_post_stream_enabled:
-    client: true
-    default: false
-
-adbutler_plugin:
-  adbutler_publisher_id:
-    client: true
-    default: ""
-  adbutler_through_trust_level:
-    client: true
-    default: 2
-    enum: "TrustLevelSetting"
-  adbutler_topic_list_top_zone_id:
-    client: true
-    default: ""
-  adbutler_mobile_topic_list_top_zone_id:
-    client: true
-    default: ""
-  adbutler_topic_above_post_stream_zone_id:
-    client: true
-    default: ""
-  adbutler_mobile_topic_above_post_stream_zone_id:
-    client: true
-    default: ""
-  adbutler_topic_above_suggested_zone_id:
-    client: true
-    default: ""
-  adbutler_mobile_topic_above_suggested_zone_id:
-    client: true
-    default: ""
-  adbutler_post_bottom_zone_id:
-    client: true
-    default: ""
-  adbutler_mobile_post_bottom_zone_id:
-    client: true
-    default: ""
-  adbutler_nth_post:
-    client: true
-    default: 4
-    min: 1
-  adbutler_adserver_hostname:
-    client: true
-    default: "servedbyadbutler.com"

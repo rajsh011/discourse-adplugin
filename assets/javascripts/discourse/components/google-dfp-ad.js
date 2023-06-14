@@ -6,8 +6,8 @@ import RSVP from "rsvp";
 import { isTesting } from "discourse-common/config/environment";
 import { htmlSafe } from "@ember/template";
 
-let _loaded = false,
-  _promise = null,
+let _didnaLoaded  = false,
+_didnaPromise  = null,
   ads = {},
   nextSlotNum = 1,
   renderCounts = {};
@@ -43,14 +43,15 @@ function keyParse(word) {
 }
 
 // This should call adslot.setTargeting(key for that location, value for that location)
-function custom_targeting(key_array, value_array, adSlot) {
+/* Comment yg cdfsn */
+/* function custom_targeting(key_array, value_array, adSlot) {
   for (let i = 0; i < key_array.length; i++) {
     if (key_array[i]) {
       adSlot.setTargeting(key_array[i], valueParse(value_array[i]));
     }
   }
 }
-
+ */
 const DESKTOP_SETTINGS = {
   "topic-list-top": {
     code: "dfp_topic_list_top_code",
@@ -140,8 +141,8 @@ function getWidthAndHeight(placement, settings, isMobile) {
     return sizeObj;
   }
 }
-
-function defineSlot(
+/* Comment yg cdfsn */
+/* function defineSlot(
   divId,
   placement,
   settings,
@@ -150,10 +151,11 @@ function defineSlot(
   height,
   categoryTarget
 ) {
+  
   if (!settings.dfp_publisher_id) {
     return;
   }
-
+ 
   if (ads[divId]) {
     return ads[divId];
   }
@@ -188,36 +190,63 @@ function defineSlot(
 
   ads[divId] = { ad, width, height };
   return ads[divId];
+} */
+
+function defineSlot(
+  placement,
+  settings,
+  isMobile
+) {
+
+  let ad, config;
+
+  if (isMobile) {
+    config = MOBILE_SETTINGS[placement];
+  } else {
+    config = DESKTOP_SETTINGS[placement];
+  }
+  return "/" + settings[config.code];
 }
 
-function destroySlot(divId) {
+/* Comment yg cdfsn */
+/* function destroySlot(divId) {
   if (ads[divId] && window.googletag) {
     window.googletag.destroySlots([ads[divId].ad]);
     delete ads[divId];
   }
+} */
+
+function destroySlot( divId ) {
+  var didna = window.didna || {};
+  didna.cmd = didna.cmd || [];
+  didna.cmd.push(function () {
+      didna.removeAdUnits(divId);
+  });
 }
 
-function loadGoogle() {
+function loadDiDNA() {
   /**
    * Refer to this article for help:
    * https://support.google.com/admanager/answer/4578089?hl=en
    */
 
-  if (_loaded) {
+  if (_didnaLoaded) {
     return RSVP.resolve();
   }
 
-  if (_promise) {
-    return _promise;
+  if (_didnaPromise) {
+    return _didnaPromise;
   }
 
   // The boilerplate code
   let dfpSrc =
     ("https:" === document.location.protocol ? "https:" : "http:") +
-    "//securepubads.g.doubleclick.net/tag/js/gpt.js";
-  _promise = loadScript(dfpSrc, { scriptTag: true }).then(function () {
-    _loaded = true;
-    if (window.googletag === undefined) {
+    "//storage.googleapis.com/didna_hb/spg/sportspublishersgroupmixedmartialarts/didna_config.js";
+   _didnaPromise  = loadScript(dfpSrc, { scriptTag: true }).then(function () {
+    _didnaLoaded = true;
+
+     /* Comment yg cdfsn */
+ /*    if (window.googletag === undefined) {
       // eslint-disable-next-line no-console
       console.log("googletag is undefined!");
     }
@@ -230,18 +259,18 @@ function loadGoogle() {
       window.googletag.pubads().disableInitialLoad();
 
       window.googletag.enableServices();
-    });
+    }); */
+    
   });
+    /* Comment yg cdfsn */
+ /*  window.googletag = window.googletag || { cmd: [] }; */
 
-  window.googletag = window.googletag || { cmd: [] };
-
-  return _promise;
+  return _didnaPromise;
 }
 
 export default AdComponent.extend({
   classNameBindings: ["adUnitClass"],
   classNames: ["google-dfp-ad"],
-  loadedGoogletag: false,
   refreshOnChange: null,
   lastAdRefresh: null,
   width: alias("size.width"),
@@ -272,11 +301,14 @@ export default AdComponent.extend({
   @discourseComputed("placement", "postNumber")
   divId(placement, postNumber) {
     let slotNum = getNextSlotNum();
-    if (postNumber) {
+     /* Comment yg cdfsn */
+ /*    if (postNumber) {
       return `div-gpt-ad-${slotNum}-${placement}-${postNumber}`;
     } else {
       return `div-gpt-ad-${slotNum}-${placement}`;
-    }
+    } */
+
+    return `didna_slot_${slotNum}`;
   },
 
   @discourseComputed("placement", "showAd")
@@ -339,7 +371,8 @@ export default AdComponent.extend({
 
     return this.isNthPost(parseInt(this.siteSettings.dfp_nth_post_code, 10));
   },
-
+   /* Comment yg cdfsn 2 */
+/* 
   // 3 second delay between calls to refresh ads in a component.
   // Ember often calls updated() more than once, and *sometimes*
   // updated() is called after _initGoogleDFP().
@@ -373,7 +406,7 @@ export default AdComponent.extend({
       });
     }
   },
-
+ */
   @on("didInsertElement")
   _initGoogleDFP() {
     if (isTesting()) {
@@ -383,12 +416,12 @@ export default AdComponent.extend({
     if (!this.get("showAd")) {
       return;
     }
-
-    loadGoogle().then(() => {
+   /* Comment yg cdfsn */
+ /*    loadGoogle().then(() => {
       this.set("loadedGoogletag", true);
-      this.set("lastAdRefresh", new Date());
+      this.set("lastAdRefresh", new Date()); */
 
-      window.googletag.cmd.push(() => {
+  /*     window.googletag.cmd.  (() => {
         let slot = defineSlot(
           this.get("divId"),
           this.get("placement"),
@@ -404,7 +437,36 @@ export default AdComponent.extend({
           window.googletag.display(this.get("divId"));
           window.googletag.pubads().refresh([slot.ad]);
         }
-      });
+      }); */
+
+      var didna = window.didna || {};
+      didna.cmd = didna.cmd || [];
+      var didna_counter = window.didna_counter || 0;
+  
+      didna.cmd.push(function () {
+        didna.createAdUnits({
+            id: id,
+            adUnitPath: adUnitPath,
+            size: [728, 90],
+            sizeMap: [
+                [
+                    [728, 0],
+                    [[728, 90],[468, 60],],
+                ],
+                [
+                    [468, 0],[468, 60],
+                ],
+                [
+                    [320, 0],
+                    [[320, 50],[320, 100],],
+                ],
+            ],
+        });
+        didna_counter++;
+    });
+
+      loadDiDNA().then(() => {
+
     });
   },
 
@@ -416,8 +478,13 @@ export default AdComponent.extend({
     }
   },
 
-  @on("willDestroyElement")
+ /*  @on("willDestroyElement")
   cleanup() {
     destroySlot(this.get("divId"));
-  },
+  }, */
+
+  @on( "willDestroyElement" )
+    cleanup() {
+      destroySlot( this.get( "divId" ) );
+    },
 });

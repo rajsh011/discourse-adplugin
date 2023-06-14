@@ -2,7 +2,7 @@
 
 # name: discourse-adplugin
 # about: Ad Plugin for Discourse
-# version: 1.2.5
+# version: 1.2.6
 # authors: Vi and Sarah (@ladydanger and @cyberkoi)
 # url: https://github.com/discourse/discourse-adplugin
 # transpile_js: true
@@ -29,6 +29,10 @@ module ::AdPlugin
   def self.pstore_delete(key)
     PluginStore.remove(AdPlugin.plugin_name, key)
   end
+
+  def extend_content_security_policy(extension)
+    csp_extensions << extension
+  end
 end
 
 after_initialize do
@@ -47,6 +51,8 @@ after_initialize do
     return false if object.topic.tags.empty?
     !(SiteSetting.no_ads_for_tags.split("|") & object.topic.tags.map(&:name)).empty?
   end
+  extend_content_security_policy(
+    worker_src: SiteSetting.content_security_policy_worker_src) if SiteSetting.content_security_policy_worker_src.present?
 
   class ::AdstxtController < ::ApplicationController
     skip_before_action :preload_json, :check_xhr, :redirect_to_login_if_required
