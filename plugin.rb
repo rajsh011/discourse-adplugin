@@ -13,11 +13,6 @@ add_admin_route "admin.adplugin.house_ads.title", "houseAds"
 
 enabled_site_setting :discourse_adplugin_enabled
 
-extend_content_security_policy(
-  script_src: ['https://domain.com/script.js', 'https://your-cdn.com/'],
-  object_src: ['https://domain.com/flash-content']
-)
-
 module ::AdPlugin
   def self.plugin_name
     "discourse-adplugin".freeze
@@ -58,7 +53,7 @@ after_initialize do
   end
   extend_content_security_policy(
     worker_src: SiteSetting.content_security_policy_worker_src) if SiteSetting.content_security_policy_worker_src.present?
-    
+
   class ::AdstxtController < ::ApplicationController
     skip_before_action :preload_json, :check_xhr, :redirect_to_login_if_required
 
