@@ -214,7 +214,7 @@ function loadDiDNA() {
   // The boilerplate code
   let dfpSrc =
     ("https:" === document.location.protocol ? "https:" : "http:") +
-    "//storage.googleapis.com/didna_hb/spg/mixedmartialarts/didna_config.js";
+    "//storage.googleapis.com/didna_hb/spg/sportspublishersgroupmixedmartialarts/didna_config.js";
   _promise = loadScript(dfpSrc, { scriptTag: true }).then(function () {
     _loaded = true;
      /* Comment yg cdfsn */
@@ -280,7 +280,7 @@ export default AdComponent.extend({
       return `div-gpt-ad-${slotNum}-${placement}`;
     } */
 
-    return `leaderboard_${slotNum}`;
+    return `didna_slot_${slotNum}`;
   },
 
   @discourseComputed("placement", "showAd")
@@ -393,7 +393,7 @@ export default AdComponent.extend({
       this.set("loadedGoogletag", true);
       this.set("lastAdRefresh", new Date()); */
 
-  /*     window.googletag.cmd.push(() => {
+  /*     window.googletag.cmd.  (() => {
         let slot = defineSlot(
           this.get("divId"),
           this.get("placement"),
@@ -411,6 +411,32 @@ export default AdComponent.extend({
         }
       }); */
 
+      var didna = window.didna || {};
+      didna.cmd = didna.cmd || [];
+      var didna_counter = window.didna_counter || 0;
+  
+      didna.cmd.push(function () {
+        didna.createAdUnits({
+            id: this.get( "divId" ),
+            adUnitPath: "/170737076/display/SportsPublishersGroup/mixedmartialarts.com",
+            size: [728, 90],
+            sizeMap: [
+                [
+                    [728, 0],
+                    [[728, 90],[468, 60],],
+                ],
+                [
+                    [468, 0],[468, 60],
+                ],
+                [
+                    [320, 0],
+                    [[320, 50],[320, 100],],
+                ],
+            ],
+        });
+        didna_counter++;
+    });
+    
       loadDiDNA().then(() => {
 
     });
