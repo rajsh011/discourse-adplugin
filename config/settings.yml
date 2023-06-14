@@ -20,6 +20,12 @@ ad_plugin:
     client: true
     default: ""
     type: list
+  dfd_topic_above_post_stream_id:
+    client: true
+    default: "leaderboard_1"
+  dfd_topic_after_nth_post_id:
+    client: true
+    default: "inline_"
   house_ads_after_nth_topic:
     client: true
     default: 20
