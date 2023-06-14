@@ -208,13 +208,21 @@ function defineSlot(
   return "/" + settings[config.code];
 }
 
-
+/* Comment yg cdfsn */
 /* function destroySlot(divId) {
   if (ads[divId] && window.googletag) {
     window.googletag.destroySlots([ads[divId].ad]);
     delete ads[divId];
   }
 } */
+
+function destroySlot( divId ) {
+  var didna = window.didna || {};
+  didna.cmd = didna.cmd || [];
+  didna.cmd.push(function () {
+      didna.removeAdUnits(divId);
+  });
+}
 
 function loadDiDNA() {
   /**
@@ -474,4 +482,9 @@ export default AdComponent.extend({
   cleanup() {
     destroySlot(this.get("divId"));
   }, */
+
+  @on( "willDestroyElement" )
+    cleanup() {
+      destroySlot( this.get( "divId" ) );
+    },
 });
