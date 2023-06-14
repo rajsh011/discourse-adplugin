@@ -197,7 +197,7 @@ function destroySlot(divId) {
   }
 }
 
-function loadGoogle() {
+function loadDiDNA() {
   /**
    * Refer to this article for help:
    * https://support.google.com/admanager/answer/4578089?hl=en
@@ -214,10 +214,11 @@ function loadGoogle() {
   // The boilerplate code
   let dfpSrc =
     ("https:" === document.location.protocol ? "https:" : "http:") +
-    "//securepubads.g.doubleclick.net/tag/js/gpt.js";
+    "//storage.googleapis.com/didna_hb/spg/mixedmartialarts/didna_config.js";
   _promise = loadScript(dfpSrc, { scriptTag: true }).then(function () {
     _loaded = true;
-    if (window.googletag === undefined) {
+     /* Comment yg cdfsn */
+ /*    if (window.googletag === undefined) {
       // eslint-disable-next-line no-console
       console.log("googletag is undefined!");
     }
@@ -230,10 +231,10 @@ function loadGoogle() {
       window.googletag.pubads().disableInitialLoad();
 
       window.googletag.enableServices();
-    });
+    }); */
   });
-
-  window.googletag = window.googletag || { cmd: [] };
+    /* Comment yg cdfsn */
+ /*  window.googletag = window.googletag || { cmd: [] }; */
 
   return _promise;
 }
@@ -272,11 +273,14 @@ export default AdComponent.extend({
   @discourseComputed("placement", "postNumber")
   divId(placement, postNumber) {
     let slotNum = getNextSlotNum();
-    if (postNumber) {
+     /* Comment yg cdfsn */
+ /*    if (postNumber) {
       return `div-gpt-ad-${slotNum}-${placement}-${postNumber}`;
     } else {
       return `div-gpt-ad-${slotNum}-${placement}`;
-    }
+    } */
+
+    return `leaderboard_${slotNum}`;
   },
 
   @discourseComputed("placement", "showAd")
@@ -383,12 +387,12 @@ export default AdComponent.extend({
     if (!this.get("showAd")) {
       return;
     }
-
-    loadGoogle().then(() => {
+   /* Comment yg cdfsn */
+ /*    loadGoogle().then(() => {
       this.set("loadedGoogletag", true);
-      this.set("lastAdRefresh", new Date());
+      this.set("lastAdRefresh", new Date()); */
 
-      window.googletag.cmd.push(() => {
+  /*     window.googletag.cmd.push(() => {
         let slot = defineSlot(
           this.get("divId"),
           this.get("placement"),
@@ -404,7 +408,10 @@ export default AdComponent.extend({
           window.googletag.display(this.get("divId"));
           window.googletag.pubads().refresh([slot.ad]);
         }
-      });
+      }); */
+      
+      loadDiDNA().then(() => {
+
     });
   },
 
