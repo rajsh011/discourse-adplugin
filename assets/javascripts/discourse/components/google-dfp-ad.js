@@ -343,7 +343,8 @@ export default AdComponent.extend({
 
     return this.isNthPost(parseInt(this.siteSettings.dfp_nth_post_code, 10));
   },
-
+   /* Comment yg cdfsn 2 */
+/* 
   // 3 second delay between calls to refresh ads in a component.
   // Ember often calls updated() more than once, and *sometimes*
   // updated() is called after _initGoogleDFP().
@@ -377,7 +378,7 @@ export default AdComponent.extend({
       });
     }
   },
-
+ */
   @on("didInsertElement")
   _initGoogleDFP() {
     if (isTesting()) {
@@ -409,7 +410,7 @@ export default AdComponent.extend({
           window.googletag.pubads().refresh([slot.ad]);
         }
       }); */
-      
+
       loadDiDNA().then(() => {
 
     });
