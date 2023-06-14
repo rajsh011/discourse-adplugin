@@ -56,7 +56,7 @@ adsense_plugin:
   adsense_topic_list_top_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_topic_list_top_ad_sizes:
     client: true
@@ -84,7 +84,7 @@ adsense_plugin:
   adsense_mobile_topic_list_top_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_mobile_topic_list_top_ad_size:
     client: true
@@ -94,7 +94,7 @@ adsense_plugin:
   adsense_topic_above_post_stream_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_topic_above_post_stream_ad_sizes:
     client: true
@@ -104,7 +104,7 @@ adsense_plugin:
   adsense_mobile_topic_above_post_stream_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_mobile_topic_above_post_stream_ad_size:
     client: true
@@ -114,7 +114,7 @@ adsense_plugin:
   adsense_topic_above_suggested_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_topic_above_suggested_ad_sizes:
     client: true
@@ -124,7 +124,7 @@ adsense_plugin:
   adsense_mobile_topic_above_suggested_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_mobile_topic_above_suggested_ad_size:
     client: true
@@ -134,7 +134,7 @@ adsense_plugin:
   adsense_post_bottom_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_post_bottom_ad_sizes:
     client: true
@@ -144,7 +144,7 @@ adsense_plugin:
   adsense_mobile_post_bottom_code:
     client: true
     default: ""
-    max: 50
+    max: 100
     regex: '^[\d]*$'
   adsense_mobile_post_bottom_ad_size:
     client: true
@@ -170,7 +170,7 @@ dfp_plugin:
   dfp_topic_list_top_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_topic_list_top_ad_sizes:
     client: true
     default: "728*90 - leaderboard"
@@ -213,7 +213,7 @@ dfp_plugin:
   dfp_mobile_topic_list_top_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_mobile_topic_list_top_ad_sizes:
     client: true
     default: "320*50 - mobile leaderboard"
@@ -230,7 +230,7 @@ dfp_plugin:
   dfp_topic_above_post_stream_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_topic_above_post_stream_ad_sizes:
     client: true
     default: "728*90 - leaderboard"
@@ -239,7 +239,7 @@ dfp_plugin:
   dfp_mobile_topic_above_post_stream_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_mobile_topic_above_post_stream_ad_sizes:
     client: true
     default: "320*50 - mobile leaderboard"
@@ -256,7 +256,7 @@ dfp_plugin:
   dfp_topic_above_suggested_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_topic_above_suggested_ad_sizes:
     client: true
     default: "728*90 - leaderboard"
@@ -265,7 +265,7 @@ dfp_plugin:
   dfp_mobile_topic_above_suggested_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_mobile_topic_above_suggested_ad_sizes:
     client: true
     default: "320*50 - mobile leaderboard"
@@ -279,7 +279,7 @@ dfp_plugin:
     default: ""
     type: value_list
     client: true
-    max: 50
+    max: 100
   dfp_nth_post_code:
     client: true
     default: ""
@@ -287,7 +287,7 @@ dfp_plugin:
   dfp_post_bottom_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_post_bottom_ad_sizes:
     client: true
     default: "728*90 - leaderboard"
@@ -296,7 +296,7 @@ dfp_plugin:
   dfp_mobile_post_bottom_code:
     client: true
     default: ""
-    max: 50
+    max: 100
   dfp_mobile_post_bottom_ad_sizes:
     client: true
     default: "320*50 - mobile leaderboard"
