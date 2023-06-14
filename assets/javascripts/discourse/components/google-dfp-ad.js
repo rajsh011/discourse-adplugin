@@ -263,7 +263,6 @@ function loadDiDNA() {
 export default AdComponent.extend({
   classNameBindings: ["adUnitClass"],
   classNames: ["google-dfp-ad"],
-  loadedGoogletag: false,
   refreshOnChange: null,
   lastAdRefresh: null,
   width: alias("size.width"),
