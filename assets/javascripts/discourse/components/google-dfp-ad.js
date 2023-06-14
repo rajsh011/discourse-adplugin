@@ -77,6 +77,12 @@ const DESKTOP_SETTINGS = {
     targeting_keys: "dfp_target_post_bottom_key_code",
     targeting_values: "dfp_target_post_bottom_value_code",
   },
+  "side-ad":{	
+    code: "dfp_side_ad_code",	
+    sizes: "dfp_mobile_side_ad_sizes",	
+    targeting_keys: "dfp_target_side_ad_key_code",	
+    targeting_values: "dfp_target_side_ad_value_code",	
+  },
 };
 
 const MOBILE_SETTINGS = {
@@ -103,6 +109,12 @@ const MOBILE_SETTINGS = {
     sizes: "dfp_mobile_post_bottom_ad_sizes",
     targeting_keys: "dfp_target_post_bottom_key_code",
     targeting_values: "dfp_target_post_bottom_value_code",
+  },
+  "side-ad":{	
+    code: "dfp_mobile_side_ad_code",	
+    sizes: "dfp_mobile_side_ad_sizes",	
+    targeting_keys: "dfp_target_side_ad_key_code",	
+    targeting_values: "dfp_target_side_ad_value_code",	
   },
 };
 

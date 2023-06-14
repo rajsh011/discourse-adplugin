@@ -27,6 +27,8 @@ const adConfig = EmberObject.create({
       "post-bottom": "amazon_post_bottom_src_code",
       "topic-above-post-stream": "amazon_topic_above_post_stream_src_code",
       "topic-above-suggested": "amazon_topic_above_suggested_src_code",
+      "side-ad": "amazon_side_ad_src_code",
+      "topic-navigation-ad": "amazon_topic_navigation_ad_src_code",
     },
     mobile: {
       "topic-list-top": "amazon_mobile_topic_list_top_src_code",
@@ -34,6 +36,8 @@ const adConfig = EmberObject.create({
       "topic-above-post-stream":
         "amazon_mobile_topic_above_post_stream_src_code",
       "topic-above-suggested": "amazon_mobile_topic_above_suggested_src_code",
+      "side-ad":" amazon_mobile_side_ad_src_code",
+      "topic-navigation-ad": "amazon_mobile_topic_navigation_ad_src_code",
     },
   },
   "carbonads-ad": {
@@ -44,6 +48,8 @@ const adConfig = EmberObject.create({
       "post-bottom": false,
       "topic-above-post-stream": "carbonads_above_post_stream_enabled",
       "topic-above-suggested": false,
+      "side-ad":false,
+      "topic-navigation-ad": false,
     },
   },
   "adbutler-ad": {
@@ -54,6 +60,8 @@ const adConfig = EmberObject.create({
       "post-bottom": "adbutler_post_bottom_zone_id",
       "topic-above-post-stream": "adbutler_topic_above_post_stream_zone_id",
       "topic-above-suggested": "adbutler_topic_above_suggested_zone_id",
+      "side-ad":"adbutler_side_ad_zone_id",
+      "topic-navigation-ad": " adbutler_topic_navigation_ad_zone_id",
     },
     mobile: {
       "topic-list-top": "adbutler_mobile_topic_list_top_zone_id",
@@ -61,6 +69,8 @@ const adConfig = EmberObject.create({
       "topic-above-post-stream":
         "adbutler_mobile_topic_above_post_stream_zone_id",
       "topic-above-suggested": "adbutler_mobile_topic_above_suggested_zone_id",
+      "side-ad": "adbutler_mobile_side_ad_zone_id",
+      "topic-navigation-ad": "adbutler_mobile_topic_navigation_ad_zone_id",
     },
   },
 });
